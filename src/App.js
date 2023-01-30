@@ -34,6 +34,7 @@ export default class App extends React.Component {
             const main = document.createElement("td");
             main.rowSpan = width;
             main.style.backgroundColor = color;
+            main.style.wordBreak = "break-all";
 
             const title = document.createElement("div");
             title.style.fontWeight = "bold";
