@@ -23,15 +23,18 @@ export default class AddEvent extends React.Component {
                     <label>
                     Fri <input type="checkbox" id="Fri" name="Fri" value="5"/>
                     </label><br/>
-                    <label>
-                    Start time <input type="text" id="start" name="start"></input>
-                    </label><br/>
-                    <label>
-                    End time <input type="text" id="end" name="end"></input>
-                    </label>
-                    <label>
-                    Tag colour <input type="color" id="color" name="color"></input>
-                    </label>
+                    <input type="text" id="title" name="title" placeholder='Title'></input>
+                    <br/>
+                    <input type="text" id="start" name="start" placeholder='Start time'></input>
+                    <br/>
+                    <input type="text" id="end" name="end" placeholder='End time'></input>
+                    <br/>
+                    <input type="text" id="loc" name="loc" placeholder='Location'></input>
+                    <br/>
+                    <input type="text" id="rem" name="rem" placeholder='Remarks (Optional)'></input>
+                    <br/>
+                    <label>Tag colour </label>
+                    <input type="color" id="color" name="color" defaultValue="#FFFFFF"></input>
                     <br/>
                     <input type='submit'/>
                     </form>
