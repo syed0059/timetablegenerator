@@ -1,3 +1,4 @@
+import { FormControl, InputLabel, MenuItem, Paper, Select, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import React from 'react';
 
 
@@ -5,7 +6,7 @@ let days = [];
 ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].forEach(
   (day) => {
     days.push(
-      <th key={day} value={day} className="day">{day}</th>
+      <TableCell key={day} value={day} className="day">{day}</TableCell>
     )
   } 
 );
@@ -13,7 +14,7 @@ let days = [];
 const range = [];
     for (let i = 0; i <= 23; i++) {
       range.push(
-        <option key={i} value={i}>{i.toString().padStart(2,"0")}00Hrs</option>
+        <MenuItem key={i} value={i}>{i.toString().padStart(2,"0")}00Hrs</MenuItem>
       )
     }
 
@@ -22,35 +23,37 @@ export default class Timetable extends React.Component {
   render() {
     return(
       <div>
-        <h1>Time Table</h1>
+        <Typography variant='h1'>Time Table Generator</Typography>
 
-        <label>
-          Start of day:&nbsp;
-          <select onChange={this.props.handleChange} name="start" value={this.props.start}>
-            {range}
-          </select>
-        </label>
-        <br/>
-        <label>
-          End of day:&nbsp;
-          <select onChange={this.props.handleChange} name="end" value={this.props.end}>
-            {range}
-          </select>
-        </label>
+        <div style={{display:"flex"}}>
+          <FormControl>
+            <InputLabel id="start_label_id">Start of day</InputLabel>
+            <Select sx={{m:1.5}} onChange={this.props.handleChange} name="start" value={this.props.start} labelId="start_label_id" label="Start of day">
+              {range}
+            </Select>
+          </FormControl>
+          <FormControl>
+            <InputLabel id="end_label_id">End of day</InputLabel>
+            <Select sx={{m:1.5}} onChange={this.props.handleChange} name="end" value={this.props.end} labelId="end_label_id" label="End of day">
+              {range}
+            </Select>
+          </FormControl>
+        </div>
 
+        <TableContainer ref="main-table" component={Paper}>
+          <Table id="table">
+            <TableHead id="thead">
+              <TableRow>
+                <TableCell key="time" className='day'>Time</TableCell>
+                {days}
+              </TableRow>
+            </TableHead>
 
-        <table id='table'>
-          <thead id="thead">
-            <tr>
-              <th key="time" className='day'>Time</th>
-              {days}
-            </tr>
-          </thead>
-
-          <tbody id="tbody">
-            {this.props.hours}
-          </tbody>
-        </table>
+            <TableBody id="tbody">
+              {this.props.hours}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
     );
   }
