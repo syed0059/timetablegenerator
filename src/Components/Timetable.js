@@ -1,12 +1,12 @@
-import { FormControl, InputLabel, MenuItem, Paper, Select, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { Button, FormControl, InputLabel, MenuItem, Paper, Select, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import React from 'react';
-
+import { exportComponentAsJPEG } from 'react-component-export-image';
 
 let days = []; 
 ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].forEach(
   (day) => {
     days.push(
-      <TableCell key={day} value={day} className="day">{day}</TableCell>
+      <TableCell sx={{textAlign:"center"}} key={day} value={day} className="day">{day}</TableCell>
     )
   } 
 );
@@ -19,6 +19,10 @@ const range = [];
     }
 
 export default class Timetable extends React.Component {
+  constructor(props) {
+    super(props);
+    this.ref = React.createRef();
+  }
 
   render() {
     return(
@@ -40,11 +44,11 @@ export default class Timetable extends React.Component {
           </FormControl>
         </div>
 
-        <TableContainer ref="main-table" component={Paper}>
-          <Table id="table">
+        <TableContainer ref={this.ref} component={Paper} sx={{ ml:"auto", mr:"auto"}}>
+          <Table id="table" align="center">
             <TableHead id="thead">
               <TableRow>
-                <TableCell key="time" className='day'>Time</TableCell>
+                <TableCell sx={{textAlign:"center"}} key="time" className='day'>Time</TableCell>
                 {days}
               </TableRow>
             </TableHead>
@@ -54,6 +58,7 @@ export default class Timetable extends React.Component {
             </TableBody>
           </Table>
         </TableContainer>
+        <Button variant='contained' sx={{float:"right", m:1}} onClick={() => {exportComponentAsJPEG(this.ref, "timetable")}}>Export</Button>
       </div>
     );
   }

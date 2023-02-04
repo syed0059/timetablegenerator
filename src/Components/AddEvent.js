@@ -1,6 +1,5 @@
-import { Box, Button, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle, FormControlLabel, FormGroup, TextField } from '@mui/material';
+import { Button, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle, FormControlLabel, FormGroup, TextField } from '@mui/material';
 import React from 'react';
-import { exportComponentAsJPEG } from 'react-component-export-image';
 
 export default class AddEvent extends React.Component {
     constructor(props) {
@@ -23,11 +22,7 @@ export default class AddEvent extends React.Component {
     render() {
         return (
             <div>
-            <Box component="span" m={1} display="flex" justifyContent="space-between" alignItems="center">
                 <Button sx={{m:1}} variant="contained" onClick={this.openModal}>Add events</Button>
-                {/* Need fix */}
-                <Button sx={{m:1}} variant="contained">Export timetable</Button>
-            </Box>
                 <Dialog open={this.state.modal} onClose={this.closeModal}>
                     <form onSubmit={this.props.addEvent} autoComplete="off">
                         <DialogTitle>Add events to timetable</DialogTitle>

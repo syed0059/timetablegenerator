@@ -12,8 +12,7 @@ export default class App extends React.Component {
       hours: [],
       start: 0,
       end: 0,
-      openDialog: false,
-      events: {"1":[], "2":[], "3":[],"4":[],"5":[]}
+      openDialog: false
     }
   }
 
@@ -34,20 +33,25 @@ export default class App extends React.Component {
       for (const entry of f) {
         if (days.includes(entry[0])) {
           for (let i = start; i <= end; i++) {
-            const temp = <TableCell key={`row${i-state.start}col${entry[1]}`} align="left" sx={{bgcolor: color}} rowSpan={width}>
-            <Typography variant='h5'>{f.get("title")}</Typography>
-              <Typography variant="body1">{f.get("loc")}</Typography>
-              <Typography variant="body1">{f.get("rem")}</Typography>
+            const temp = <TableCell key={`row${start}col${entry[1]}`} align="left" sx={{bgcolor: color, width:"auto"}} rowSpan={width}>
+            <Typography sx={{color:"black"}} variant='h5'>{f.get("title")}</Typography>
+              <Typography sx={{color:"black"}} variant="body1">{f.get("loc")}</Typography>
+              <Typography sx={{color:"black"}} variant="body1">{f.get("rem")}</Typography>
             </TableCell>;
             if (i === start) {
-              hrs[i-state.start].props.children.splice(parseInt(entry[1]), 1, temp);
+              hrs[i-state.start].props.children = hrs[i-state.start].props.children.map(r => {
+                if (r.key === `row${i}col${entry[1]}`) {
+                  return temp;
+                }
+                return r;
+              }) 
               continue;
             }
             hrs[i-state.start].props.children = hrs[i-state.start].props.children.filter(r =>
               r.key !== `row${i}col${entry[1]}`
             )
-            // console.log(`row${i}col${entry[1]}`)
-            // console.log(hrs[i-state.start].props.children); 
+            console.log(`row${i}col${entry[1]}`)
+            console.log(hrs[i-state.start].props.children); 
           }
         }
       }
@@ -70,7 +74,7 @@ export default class App extends React.Component {
         //Create the children <td> tags
         const children = [];
         children.push(
-          <TableCell sx={{width:"7%"}} key={i} className="timeCell">{i.toString().padStart(2,"0")}00hrs</TableCell>
+          <TableCell sx={{textAlign:"center"}} key={i} className="timeCell">{i.toString().padStart(2,"0")}00hrs</TableCell>
         )
         
         for (let j = 0; j < 5; j++) {
