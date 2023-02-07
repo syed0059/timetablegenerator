@@ -13,4 +13,5 @@ View demo at: https://syed0059.github.io/timetablegenerator/
 
 ## Future improvements
 - Allow finer control of the time intervals (eg. every 15/20/30mins)
+- Enable editing of existing events
 - Improve mobile UI
