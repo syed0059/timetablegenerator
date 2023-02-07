@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/timetablegenerator/static/css/main.372aa89f.css",
-    "main.js": "/timetablegenerator/static/js/main.2a0eb281.js",
+    "main.js": "/timetablegenerator/static/js/main.6c8195f7.js",
     "static/js/787.63e47474.chunk.js": "/timetablegenerator/static/js/787.63e47474.chunk.js",
     "static/media/roboto-all-500-normal.woff": "/timetablegenerator/static/media/roboto-all-500-normal.0ab669b7a0d19b178f57.woff",
     "static/media/roboto-all-700-normal.woff": "/timetablegenerator/static/media/roboto-all-700-normal.a457fde362a540fcadff.woff",
@@ -37,11 +37,11 @@
     "static/media/roboto-greek-ext-700-normal.woff2": "/timetablegenerator/static/media/roboto-greek-ext-700-normal.bd9854c751441ccc1a70.woff2",
     "index.html": "/timetablegenerator/index.html",
     "main.372aa89f.css.map": "/timetablegenerator/static/css/main.372aa89f.css.map",
-    "main.2a0eb281.js.map": "/timetablegenerator/static/js/main.2a0eb281.js.map",
+    "main.6c8195f7.js.map": "/timetablegenerator/static/js/main.6c8195f7.js.map",
     "787.63e47474.chunk.js.map": "/timetablegenerator/static/js/787.63e47474.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.372aa89f.css",
-    "static/js/main.2a0eb281.js"
+    "static/js/main.6c8195f7.js"
   ]
 }
