@@ -12,7 +12,13 @@ let days = [];
 );
 
 const range = [];
-    for (let i = 0; i <= 23; i++) {
+    for (let i = 0; i <= 23; i += 0.5) {
+      if (i - Math.floor(i) === 0.5) {
+        range.push(
+          <MenuItem key={i} value={i}>{Math.floor(i).toString().padStart(2,"0")}30Hrs</MenuItem>
+        )
+        continue;
+      }
       range.push(
         <MenuItem key={i} value={i}>{i.toString().padStart(2,"0")}00Hrs</MenuItem>
       )

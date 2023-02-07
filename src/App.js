@@ -19,10 +19,10 @@ export default class App extends React.Component {
   addEvent = (e) => {
     e.preventDefault();
     const f = new FormData(e.target);
-    const start = parseInt(f.get("start"));
-    const end = parseInt(f.get("end"));
+    const start = parseFloat(f.get("start"));
+    const end = parseFloat(f.get("end"));
     const days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
-    const width = end-start+1;
+    const width = (end-start)/0.5;
     const color = f.get("color");
     
     this.setState(state => {
@@ -32,14 +32,14 @@ export default class App extends React.Component {
       const hrs = cloneDeep(state.hours);
       for (const entry of f) {
         if (days.includes(entry[0])) {
-          for (let i = start; i <= end; i++) {
+          for (let i = start; i < end; i += 0.5) {
             const temp = <TableCell key={`row${start}col${entry[1]}`} align="left" sx={{bgcolor: color, width:"auto"}} rowSpan={width}>
             <Typography sx={{color:"black"}} variant='h5'>{f.get("title")}</Typography>
               <Typography sx={{color:"black"}} variant="body1">{f.get("loc")}</Typography>
               <Typography sx={{color:"black"}} variant="body1">{f.get("rem")}</Typography>
             </TableCell>;
             if (i === start) {
-              hrs[i-state.start].props.children = hrs[i-state.start].props.children.map(r => {
+              hrs[(i-state.start)*2].props.children = hrs[(i-state.start)*2].props.children.map(r => {
                 if (r.key === `row${i}col${entry[1]}`) {
                   return temp;
                 }
@@ -47,11 +47,11 @@ export default class App extends React.Component {
               }) 
               continue;
             }
-            hrs[i-state.start].props.children = hrs[i-state.start].props.children.filter(r =>
+            hrs[(i-state.start)*2].props.children = hrs[(i-state.start)*2].props.children.filter(r =>
               r.key !== `row${i}col${entry[1]}`
             )
             console.log(`row${i}col${entry[1]}`)
-            console.log(hrs[i-state.start].props.children); 
+            console.log(hrs[(i-state.start)*2].props.children); 
           }
         }
       }
@@ -62,20 +62,27 @@ export default class App extends React.Component {
 
   handleChange = (event) => {
     this.setState({
-      [event.target.name]: parseInt(event.target.value)
+      [event.target.name]: parseFloat(event.target.value)
     }, this.setHours)
   }
 
   setHours = () => {
     this.setState((state) => {
       const hours = [];
-      for (let i = state.start; i <= state.end; i++) {
+      for (let i = state.start; i <= state.end; i += 0.5) {
 
         //Create the children <td> tags
         const children = [];
-        children.push(
-          <TableCell sx={{textAlign:"center"}} key={i} className="timeCell">{i.toString().padStart(2,"0")}00hrs</TableCell>
-        )
+        if (i - Math.floor(i) === 0.5) {
+          children.push(
+            <TableCell sx={{textAlign:"center"}} key={i} className="timeCell">{Math.floor(i).toString().padStart(2,"0")}30hrs</TableCell>
+          )
+        } else {
+          children.push(
+            <TableCell sx={{textAlign:"center",verticalAlign:"top" ,display:"flex", flexDirection:"column"}} key={i} className="timeCell">{i.toString().padStart(2,"0")}00hrs</TableCell>
+          )
+        }
+        
         
         for (let j = 0; j < 5; j++) {
           children.push(
