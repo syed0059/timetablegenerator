@@ -79,7 +79,7 @@ export default class App extends React.Component {
           )
         } else {
           children.push(
-            <TableCell sx={{textAlign:"center",verticalAlign:"top" ,display:"flex", flexDirection:"column"}} key={i} className="timeCell">{i.toString().padStart(2,"0")}00hrs</TableCell>
+            <TableCell sx={{textAlign:"center"}} key={i} className="timeCell">{i.toString().padStart(2,"0")}00hrs</TableCell>
           )
         }
         
